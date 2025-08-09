@@ -1,0 +1,44 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: tm
+      POSTGRES_PASSWORD: tm
+      POSTGRES_DB: tendermind
+    ports: [ "5432:5432" ]
+  redis:
+    image: redis:7
+    ports: [ "6379:6379" ]
+  chroma:
+    image: chromadb/chroma:latest
+    environment:
+      IS_PERSISTENT: "false"
+    ports: [ "8001:8000" ]
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    command: uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
+    working_dir: /app
+    ports: [ "8000:8000" ]
+    environment:
+      DATABASE_URL: postgresql+psycopg://tm:tm@postgres:5432/tendermind
+      REDIS_URL: redis://redis:6379/0
+      CHROMA_URL: http://chroma:8000
+      OPENAI_API_KEY: changeme
+    depends_on: [ postgres, redis, chroma ]
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    command: python -m app.workers.run_worker
+    working_dir: /app
+    environment:
+      DATABASE_URL: postgresql+psycopg://tm:tm@postgres:5432/tendermind
+      REDIS_URL: redis://redis:6379/0
+      CHROMA_URL: http://chroma:8000
+      OPENAI_API_KEY: changeme
+    depends_on: [ postgres, redis, chroma ]

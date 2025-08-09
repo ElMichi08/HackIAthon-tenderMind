@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+.env.local
+dist/
+build/
+node_modules/
+.next/
+.venv/
+carpetas.py
