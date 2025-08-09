@@ -1,0 +1,86 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+*.sqlite3
+*.db
+*.bak
+*.tmp
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+*.env.bak
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.*
+*.secret
+*.key
+*.pem
+
+# FastAPI static and media folders (optional)
+/static/
+media/
+
+# Docker
+*.pid
+*.pid.lock
+docker-compose.override.yml
+__docker_volume__/
+
+# ChromaDB persistence (if using local storage)
+chroma/
+chroma.db/
+chroma_index/
+*.parquet
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Coverage and testing
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+.cache/
+.pytest_cache/
+
+# MyPy, Pylint, etc.
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# Language models or embeddings (optional)
+*.bin
+*.pt
+*.onnx
+*.h5
+*.model
+*.vec
+*.pkl
