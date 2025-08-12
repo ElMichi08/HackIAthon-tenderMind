@@ -1,7 +1,7 @@
 from fastapi import APIRouter, File, UploadFile, HTTPException, Depends
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
-from langchain.document_loaders import PyMuPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
@@ -10,7 +10,6 @@ import tempfile
 import requests
 import re
 import logging
-
 from app.config.config_db import get_db
 from app.domain.models.esquema_documentos_clasificados import DocumentoClasificado
 
